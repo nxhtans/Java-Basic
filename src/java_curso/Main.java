@@ -1,33 +1,83 @@
+package java_curso;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Classe com exemplos de conceitos básicos de Java
- * Baseado em referência: Fernanda Kipper https://youtu.be/nODe5lFcGpg
- */
-public class Java001 {
-    public void executarDemonstracoes() {
-        // Menu interativo para escolha de demonstrações
-        exibirMenu();
-    }
-
-    public void executarTodasDemonstracoes() {
-        demonstrarTiposDados();
-        demonstrarOperadores();
-        demonstrarEstruturasControle();
-        demonstrarArrays();
-        demonstrarArrayLists();
-        demonstrarLoops();
-        demonstrarCasting();
-        demonstrarMetodos();
-        demonstrarTratamentoExcecoes();
-    }
-
-    private void exibirMenu() {
+public class Main {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int opcao = 0;
+        
+        do {
+            System.out.println("\n===== MENU PRINCIPAL =====");
+            System.out.println("1. Demonstrações básicas de Java");
+            System.out.println("2. Demonstrar uso da classe Carro");
+            System.out.println("0. Sair");
+            System.out.print("Escolha uma opção: ");
+            
+            try {
+                opcao = scanner.nextInt();
+                scanner.nextLine(); // Limpar buffer
+                
+                switch (opcao) {
+                    case 1:
+                        executarDemonstracoesJava(scanner);
+                        break;
+                        
+                    case 2:
+                        demonstrarCarros();
+                        break;
+                        
+                    case 0:
+                        System.out.println("Programa finalizado!");
+                        break;
+                        
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+                
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+                scanner.nextLine(); // Limpar buffer
+            }
+            
+            if (opcao != 0) {
+                System.out.println("\nPressione ENTER para voltar ao menu principal...");
+                scanner.nextLine();
+            }
+            
+        } while (opcao != 0);
+        
+        scanner.close();
+    }
+
+    // Método para demonstrar a classe Carro
+    private static void demonstrarCarros() {
+        System.out.println("\n===== DEMONSTRAÇÃO DA CLASSE CARRO =====");
+        
+        // Criando instâncias de Carro
+        Carro carro1 = new Carro("Fusca");
+        Carro carro2 = new Carro("Ferrari");
+        Carro carro3 = new Carro("Gol");
+        
+        // Utilizando o método acelerar()
+        System.out.println("• Acelerando carros:");
+        System.out.println("  " + carro1.acelerar());
+        System.out.println("  " + carro2.acelerar());
+        System.out.println("  " + carro3.acelerar());
+        
+        // Acessando o atributo modelo
+        System.out.println("\n• Modelos de carros:");
+        System.out.println("  Carro 1: " + carro1.modelo);
+        System.out.println("  Carro 2: " + carro2.modelo);
+        System.out.println("  Carro 3: " + carro3.modelo);
+    }
+    
+    // Métodos incorporados do Java001
+    private static void executarDemonstracoesJava(Scanner scanner) {
         int opcao = 0;
 
         do {
@@ -41,11 +91,12 @@ public class Java001 {
             System.out.println("7. Casting");
             System.out.println("8. Métodos");
             System.out.println("9. Tratamento de Exceções");
-            System.out.println("0. Sair");
+            System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
 
             try {
                 opcao = scanner.nextInt();
+                scanner.nextLine(); // Limpar buffer
 
                 switch (opcao) {
                     case 1: demonstrarTiposDados(); break;
@@ -57,7 +108,7 @@ public class Java001 {
                     case 7: demonstrarCasting(); break;
                     case 8: demonstrarMetodos(); break;
                     case 9: demonstrarTratamentoExcecoes(); break;
-                    case 0: System.out.println("Programa finalizado!"); break;
+                    case 0: System.out.println("Voltando ao menu principal..."); break;
                     default: System.out.println("Opção inválida!");
                 }
             } catch (InputMismatchException e) {
@@ -66,12 +117,15 @@ public class Java001 {
                 opcao = -1;
             }
 
-            pausar();
+            if (opcao != 0) {
+                System.out.println("\nPressione ENTER para continuar...");
+                scanner.nextLine();
+            }
 
         } while (opcao != 0);
     }
 
-    private void demonstrarTiposDados() {
+    private static void demonstrarTiposDados() {
         System.out.println("\n===== TIPOS DE DADOS =====");
 
         // Tipos primitivos
@@ -99,7 +153,7 @@ public class Java001 {
         System.out.println("• String (referência): " + nomeCompleto);
     }
 
-    private void demonstrarOperadores() {
+    private static void demonstrarOperadores() {
         System.out.println("\n===== OPERADORES =====");
 
         // Operadores aritméticos
@@ -138,7 +192,7 @@ public class Java001 {
         System.out.println("  !x (NOT): " + (!x));
     }
 
-    private void demonstrarEstruturasControle() {
+    private static void demonstrarEstruturasControle() {
         System.out.println("\n===== ESTRUTURAS DE CONTROLE =====");
 
         // if-else
@@ -188,7 +242,7 @@ public class Java001 {
         System.out.println("  Status: " + status);
     }
 
-    private void demonstrarArrays() {
+    private static void demonstrarArrays() {
         System.out.println("\n===== ARRAYS =====");
 
         // Declaração e inicialização
@@ -224,7 +278,7 @@ public class Java001 {
         }
     }
 
-    private void demonstrarArrayLists() {
+    private static void demonstrarArrayLists() {
         System.out.println("\n===== ARRAYLIST =====");
 
         // Criação e adição de elementos
@@ -258,7 +312,7 @@ public class Java001 {
         System.out.println("• Após limpar a lista: " + nomes + " (tamanho: " + nomes.size() + ")");
     }
 
-    private void demonstrarLoops() {
+    private static void demonstrarLoops() {
         System.out.println("\n===== LOOPS =====");
 
         List<String> nomes = Arrays.asList("Nathan", "Santos", "Silva", "Oliveira");
@@ -307,7 +361,7 @@ public class Java001 {
         }
     }
 
-    private void demonstrarCasting() {
+    private static void demonstrarCasting() {
         System.out.println("\n===== CASTING =====");
 
         // Casting implícito (widening)
@@ -351,7 +405,7 @@ public class Java001 {
         System.out.println("  int para String: " + numeroConvertido + " → \"" + voltarParaString + "\"");
     }
 
-    private void demonstrarMetodos() {
+    private static void demonstrarMetodos() {
         System.out.println("\n===== MÉTODOS =====");
 
         // Chamada de métodos com diferentes tipos de parâmetros
@@ -369,19 +423,19 @@ public class Java001 {
     }
 
     // Métodos auxiliares para demonstração
-    private int somar(int a, int b) {
+    private static int somar(int a, int b) {
         return a + b;
     }
 
-    private double calcularArea(double raio) {
+    private static double calcularArea(double raio) {
         return Math.PI * raio * raio;
     }
 
-    private String gerarSaudacao(String nome) {
+    private static String gerarSaudacao(String nome) {
         return "Olá, " + nome + "!";
     }
 
-    private double calcularMedia(int... notas) {
+    private static double calcularMedia(int... notas) {
         int soma = 0;
         for (int nota : notas) {
             soma += nota;
@@ -389,7 +443,7 @@ public class Java001 {
         return (double) soma / notas.length;
     }
 
-    private void demonstrarTratamentoExcecoes() {
+    private static void demonstrarTratamentoExcecoes() {
         System.out.println("\n===== TRATAMENTO DE EXCEÇÕES =====");
 
         // Divisão por zero
@@ -433,11 +487,5 @@ public class Java001 {
         } finally {
             System.out.println("  O bloco finally sempre é executado");
         }
-    }
-
-    private void pausar() {
-        System.out.println("\nPressione ENTER para continuar...");
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
     }
 }

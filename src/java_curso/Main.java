@@ -2,13 +2,14 @@ package java_curso;
 
 public class Main {
     public static void main(String[] args) {
-        Carro meuCarro1 = new Sandero();
-        Carro meuCarro2 = new Symbol();
-        meuCarro1.acelerar();
-        meuCarro2.acelerar();
+        TipoCarro sedan = new TipoCarro(TipoCarro.Tipo.SEDAN);
+        TipoCarro suv = new TipoCarro(TipoCarro.Tipo.SUV);
 
-        SerVivo meuSer = new Humano();
-        meuSer.respirar();
+        sedan.acelerar(); // Limite: 180 km/h
+        suv.acelerar();   // Limite: 200 km/h
+
+        System.out.println("Limite do " + sedan.getTipo() + ": " + sedan.getTipo().getLimiteDeVelocidade() + " km/h");
+        System.out.println("Limite do " + suv.getTipo() + ": " + suv.getTipo().getLimiteDeVelocidade() + " km/h");
 
     }
 }

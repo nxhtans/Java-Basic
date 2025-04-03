@@ -1,15 +1,12 @@
 package java_curso;
 
-public class Carro {
-    // atributos são como variáveis de uma classe
-    String modelo;
+// quais atributos e metodos terão na classe Carro
 
-    // métodos são como funções de uma classe
-    public Carro(String modelo) {
-        this.modelo = modelo;
-    }
+public interface Carro {
+    // assinatura dos métodos, contrato sem implementação
+    void acelerar();
 
-    public String acelerar() {
-        return "Acelerando o carro: " + this.modelo;
-    }
+    void frear();
+
+    void parar();
 }
